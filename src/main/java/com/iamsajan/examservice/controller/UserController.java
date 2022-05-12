@@ -5,6 +5,7 @@ import com.iamsajan.examservice.model.User;
 import com.iamsajan.examservice.model.UserRole;
 import com.iamsajan.examservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
@@ -19,6 +20,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
+    @ResponseStatus(code = HttpStatus.CREATED)
     public User createUser(@RequestBody User user) throws Exception {
         Set<UserRole> roles = new HashSet<>();
 
@@ -36,7 +38,20 @@ public class UserController {
     }
 
     @GetMapping
+    @ResponseStatus(code = HttpStatus.OK)
     public List<User> getAllUsers() {
         return userService.getUsers();
+    }
+
+    @GetMapping("/{username}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public User getUser(@PathVariable("username") String username) {
+        return this.userService.getUserbyUsername(username);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    public void deleteUsersById(@PathVariable("id") Long id) throws Exception {
+        userService.deleteUserById(id);
     }
 }

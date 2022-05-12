@@ -42,4 +42,17 @@ public class UserServiceImpl implements UserService {
     public List<User> getUsers() {
         return userRepository.findAll();
     }
+
+    @Override
+    public User getUserbyUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public void deleteUserById(Long id) throws Exception {
+        if (userRepository.findById(id).isPresent())
+            userRepository.deleteById(id);
+        else
+            throw new Exception("User with id " + id + " doesn't exits !!!");
+    }
 }
