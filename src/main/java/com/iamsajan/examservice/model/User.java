@@ -7,9 +7,9 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
 @Entity
 @Table(name = "users")
-@Data
 public class User {
 
     @Id
@@ -24,7 +24,6 @@ public class User {
     private String profile;
     private boolean enabled = true;
 
-    // user can have many roles
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
     private Set<UserRole> userRoles = new HashSet<>();
