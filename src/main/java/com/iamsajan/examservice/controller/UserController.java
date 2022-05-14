@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
@@ -22,6 +23,7 @@ public class UserController {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     public User createUser(@RequestBody User user) throws Exception {
+        user.setProfile("default.png");
         Set<UserRole> roles = new HashSet<>();
 
         Role role = new Role();
