@@ -3,6 +3,7 @@ package com.iamsajan.examservice.controller;
 import com.iamsajan.examservice.config.JWtUtils;
 import com.iamsajan.examservice.model.JwtRequest;
 import com.iamsajan.examservice.model.JwtResponse;
+import com.iamsajan.examservice.model.User;
 import com.iamsajan.examservice.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,11 +12,13 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
+@RequestMapping("/api/v1")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AuthenticateController {
 
     @Autowired
@@ -49,5 +52,10 @@ public class AuthenticateController {
         } catch (BadCredentialsException e) {
             throw new Exception("Invalid Credentials: " + e.getMessage());
         }
+    }
+
+    @GetMapping("/current-user")
+    public User getCurrentUser(Principal principal) {
+        return (User) this.userDetailsServiceImpl.loadUserByUsername(principal.getName());
     }
 }
