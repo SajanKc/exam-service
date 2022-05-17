@@ -7,7 +7,7 @@ import java.util.Set;
 public interface QuizService {
     public Quiz addQuiz(Quiz quiz);
 
-    public Quiz updateQuiz(Quiz quiz);
+    public Quiz updateQuiz(Long id, Quiz quiz);
 
     public Set<Quiz> getQuizzes();
 

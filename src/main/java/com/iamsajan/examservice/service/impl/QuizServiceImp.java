@@ -22,8 +22,17 @@ public class QuizServiceImp implements QuizService {
     }
 
     @Override
-    public Quiz updateQuiz(Quiz quiz) {
-        return quizRepository.save(quiz);
+    public Quiz updateQuiz(Long id, Quiz quiz) {
+        Optional<Quiz> optionalQuiz = quizRepository.findById(id);
+        if (optionalQuiz.isPresent()) {
+            Quiz updateQuiz = optionalQuiz.get();
+            updateQuiz.setTitle(quiz.getTitle());
+            updateQuiz.setDescription(quiz.getDescription());
+            updateQuiz.setMaxMarks(quiz.getMaxMarks());
+            updateQuiz.setNumberOfQuestions(quiz.getNumberOfQuestions());
+            return quizRepository.save(updateQuiz);
+        }
+        return null;
     }
 
     @Override
