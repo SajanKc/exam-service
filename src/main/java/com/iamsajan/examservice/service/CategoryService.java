@@ -7,7 +7,7 @@ import java.util.Set;
 public interface CategoryService {
     public Category addCategory(Category category);
 
-    public Category updateCategory(Category category);
+    public Category updateCategory(Long id, Category category);
 
     public Set<Category> getCategories();
 

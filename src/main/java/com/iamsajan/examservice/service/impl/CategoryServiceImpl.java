@@ -4,11 +4,13 @@ import com.iamsajan.examservice.model.exam.Category;
 import com.iamsajan.examservice.repository.CategoryRepository;
 import com.iamsajan.examservice.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashSet;
 import java.util.Optional;
 import java.util.Set;
 
+@Service
 public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
@@ -20,8 +22,15 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category updateCategory(Category category) {
-        return categoryRepository.save(category);
+    public Category updateCategory(Long id, Category category) {
+        Optional<Category> optionalCategory = categoryRepository.findById(id);
+        if (optionalCategory.isPresent()) {
+            Category updatedCategory = optionalCategory.get();
+            updatedCategory.setTitle(category.getTitle());
+            updatedCategory.setDescription(category.getDescription());
+            return categoryRepository.save(updatedCategory);
+        }
+        return null;
     }
 
     @Override
