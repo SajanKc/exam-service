@@ -1,12 +1,15 @@
 package com.iamsajan.examservice.model.exam;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "question")
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Question {
 
     @Id
@@ -21,6 +24,6 @@ public class Question {
     private String option4;
     private String answer;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Quiz quiz;
 }

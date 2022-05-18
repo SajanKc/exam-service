@@ -1,7 +1,7 @@
 package com.iamsajan.examservice.model.exam;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -9,7 +9,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "quiz")
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Quiz {
 
     @Id

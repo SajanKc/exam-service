@@ -1,7 +1,7 @@
 package com.iamsajan.examservice.model.exam;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;
@@ -9,7 +9,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "category")
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

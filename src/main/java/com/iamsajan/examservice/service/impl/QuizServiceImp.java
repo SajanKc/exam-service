@@ -43,8 +43,10 @@ public class QuizServiceImp implements QuizService {
     @Override
     public Quiz getQuiz(Long quizId) {
         Optional<Quiz> quiz = quizRepository.findById(quizId);
-        if (quiz.isPresent())
+        if (quiz.isPresent()) {
+            System.out.println("Get quiz called");
             return quiz.get();
+        }
         return null;
     }
 

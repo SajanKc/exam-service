@@ -8,7 +8,7 @@ import java.util.Set;
 public interface QuestionService {
     public Question addQuestion(Question question);
 
-    public Question updateQuestion(Question question);
+    public Question updateQuestion(Long id, Question question);
 
     public Set<Question> getQuestions();
 

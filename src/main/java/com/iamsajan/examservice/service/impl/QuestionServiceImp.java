@@ -23,8 +23,19 @@ public class QuestionServiceImp implements QuestionService {
     }
 
     @Override
-    public Question updateQuestion(Question question) {
-        return questionRepository.save(question);
+    public Question updateQuestion(Long id, Question question) {
+        Optional<Question> optionalQuestion = questionRepository.findById(id);
+        if (optionalQuestion.isPresent()) {
+            Question updatedQuestion = optionalQuestion.get();
+            updatedQuestion.setContent(question.getContent());
+            updatedQuestion.setImage(question.getImage());
+            updatedQuestion.setOption1(question.getOption1());
+            updatedQuestion.setOption2(question.getOption2());
+            updatedQuestion.setOption3(question.getOption3());
+            updatedQuestion.setOption4(question.getOption4());
+            updatedQuestion.setAnswer(question.getAnswer());
+        }
+        return null;
     }
 
     @Override
