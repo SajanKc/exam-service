@@ -30,6 +30,8 @@ public class QuizServiceImp implements QuizService {
             updateQuiz.setDescription(quiz.getDescription());
             updateQuiz.setMaxMarks(quiz.getMaxMarks());
             updateQuiz.setNumberOfQuestions(quiz.getNumberOfQuestions());
+            updateQuiz.setActive(quiz.isActive());
+            updateQuiz.setCategory(quiz.getCategory());
             return quizRepository.save(updateQuiz);
         }
         return null;
