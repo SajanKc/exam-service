@@ -18,7 +18,7 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping("/api/v1")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class AuthenticateController {
 
     @Autowired
