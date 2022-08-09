@@ -34,8 +34,15 @@ public class UserController {
         Set<UserRole> roles = new HashSet<>();
 
         Role role = new Role();
-        role.setRoleId(11L);
-        role.setRoleName("NORMAL");
+
+        // for default admin
+        if (user.getUsername().equalsIgnoreCase("SajanKc")) {
+            role.setRoleId(10L);
+            role.setRoleName("ADMIN");
+        } else {
+            role.setRoleId(11L);
+            role.setRoleName("NORMAL");
+        }
 
         UserRole userRole = new UserRole();
         userRole.setUser(user);

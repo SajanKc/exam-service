@@ -26,7 +26,6 @@ public class UserServiceImpl implements UserService {
         User localUser = userRepository.findByUsername(user.getUsername());
 
         if (localUser != null) {
-            System.out.println("User is already exits!!!");
             throw new Exception("User already exits!!!");
         } else {
             for (UserRole userRole : userRoles) {
