@@ -59,6 +59,18 @@ public class QuestionController {
         return null;
     }
 
+    // for admin
+    @GetMapping("/quiz/all/{qId}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public Set<Question> getAllQuestionsOfQuiz(@PathVariable("qId") Long qid) {
+        Quiz quiz = new Quiz();
+        quiz.setQId(qid);
+
+        Set<Question> questions = this.questionService.getQuestionsOfQuiz(quiz);
+
+        return questions;
+    }
+
     @PutMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
     public Question updateQuestion(@PathVariable("id") Long id, @RequestBody Question question) {
