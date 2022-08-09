@@ -1,6 +1,7 @@
 package com.iamsajan.examservice.model.exam;
 
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
@@ -24,6 +25,6 @@ public class Question {
     private String option4;
     private String answer;
 
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Quiz quiz;
 }

@@ -64,7 +64,7 @@ public class QuestionController {
     @ResponseStatus(code = HttpStatus.OK)
     public Set<Question> getAllQuestionsOfQuiz(@PathVariable("qId") Long qid) {
         Quiz quiz = new Quiz();
-        quiz.setQId(qid);
+        quiz.setQuizId(qid);
 
         Set<Question> questions = this.questionService.getQuestionsOfQuiz(quiz);
 
