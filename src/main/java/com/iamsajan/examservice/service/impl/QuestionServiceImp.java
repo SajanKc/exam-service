@@ -34,6 +34,7 @@ public class QuestionServiceImp implements QuestionService {
             updatedQuestion.setOption3(question.getOption3());
             updatedQuestion.setOption4(question.getOption4());
             updatedQuestion.setAnswer(question.getAnswer());
+            questionRepository.save(updatedQuestion);
         }
         return null;
     }
