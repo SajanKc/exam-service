@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -81,5 +78,11 @@ public class QuestionController {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void deleteQuestion(@PathVariable("id") Long id) {
         questionService.deleteQuestion(id);
+    }
+
+    @PostMapping("/submit-quiz")
+    @ResponseStatus(code = HttpStatus.ACCEPTED)
+    public Map<String, Object> submitQuizAnswer(@RequestBody List<Question> questions) {
+        return questionService.submitQuizAnswer(questions);
     }
 }

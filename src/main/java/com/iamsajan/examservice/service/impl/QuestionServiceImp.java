@@ -7,9 +7,7 @@ import com.iamsajan.examservice.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedHashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class QuestionServiceImp implements QuestionService {
@@ -60,5 +58,27 @@ public class QuestionServiceImp implements QuestionService {
     @Override
     public Set<Question> getQuestionsOfQuiz(Quiz quiz) {
         return questionRepository.findByQuiz(quiz);
+    }
+
+    @Override
+    public Map<String, Object> submitQuizAnswer(List<Question> questions) {
+        double marksGot = 0;
+        int correctAnswers = 0;
+        int attempt = 0;
+        for (Question question : questions) {
+            Question tempQuestion = this.getQuestion(question.getQId());
+            if (tempQuestion.getAnswer().equals(question.getGivenAnswer())) {
+                correctAnswers++;
+                // calculating quiz marks
+                double marks = Integer.parseInt(questions.get(0).getQuiz().getMaxMarks()) / questions.size();
+                marksGot += marks;
+            }
+
+            if (question.getGivenAnswer() != null) {
+                attempt++;
+            }
+        }
+        Map<String, Object> quizResponse = Map.of("marksGot", marksGot, "correctAnswers", correctAnswers, "attempt", attempt);
+        return quizResponse;
     }
 }

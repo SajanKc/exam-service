@@ -3,6 +3,8 @@ package com.iamsajan.examservice.service;
 import com.iamsajan.examservice.model.exam.Question;
 import com.iamsajan.examservice.model.exam.Quiz;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public interface QuestionService {
@@ -17,4 +19,6 @@ public interface QuestionService {
     public void deleteQuestion(Long questionId);
 
     public Set<Question> getQuestionsOfQuiz(Quiz quiz);
+
+    public Map<String, Object> submitQuizAnswer(List<Question> questions);
 }
