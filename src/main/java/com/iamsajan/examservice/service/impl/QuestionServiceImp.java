@@ -26,7 +26,6 @@ public class QuestionServiceImp implements QuestionService {
         if (optionalQuestion.isPresent()) {
             Question updatedQuestion = optionalQuestion.get();
             updatedQuestion.setContent(question.getContent());
-            updatedQuestion.setImage(question.getImage());
             updatedQuestion.setOption1(question.getOption1());
             updatedQuestion.setOption2(question.getOption2());
             updatedQuestion.setOption3(question.getOption3());

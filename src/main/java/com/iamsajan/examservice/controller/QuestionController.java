@@ -46,10 +46,16 @@ public class QuestionController {
         Quiz quiz = quizService.getQuiz(qId);
         if (quiz != null) {
             Set<Question> questions = quiz.getQuestions();
-            List questionList = new ArrayList(questions);
+            List<Question> questionList = new ArrayList(questions);
             if (questionList.size() > Integer.parseInt(quiz.getNumberOfQuestions())) {
                 questionList = questionList.subList(0, Integer.parseInt(quiz.getNumberOfQuestions() + 1));
             }
+
+            // setting answer value blank before sending to client
+            questionList.forEach(question -> {
+                question.setAnswer("");
+            });
+
             Collections.shuffle(questionList);
             return questionList;
         }
