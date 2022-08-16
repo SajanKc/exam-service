@@ -77,7 +77,10 @@ public class QuestionServiceImp implements QuestionService {
                 attempt++;
             }
         }
-        Map<String, Object> quizResponse = Map.of("marksGot", marksGot, "correctAnswers", correctAnswers, "attempt", attempt);
+        Map<String, Object> quizResponse = new HashMap<>();
+        quizResponse.put("marksGot", marksGot);
+        quizResponse.put("correctAnswers", correctAnswers);
+        quizResponse.put("attempt", attempt);
         return quizResponse;
     }
 }
