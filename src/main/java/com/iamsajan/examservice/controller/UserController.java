@@ -62,7 +62,7 @@ public class UserController {
     @GetMapping("/{username}")
     @ResponseStatus(code = HttpStatus.OK)
     public User getUser(@PathVariable("username") String username) {
-        return this.userService.getUserbyUsername(username);
+        return this.userService.getUserByUsername(username);
     }
 
     @DeleteMapping("/{id}")

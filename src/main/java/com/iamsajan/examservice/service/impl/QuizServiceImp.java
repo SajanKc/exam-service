@@ -48,7 +48,6 @@ public class QuizServiceImp implements QuizService {
     public Quiz getQuiz(Long quizId) {
         Optional<Quiz> quiz = quizRepository.findById(quizId);
         if (quiz.isPresent()) {
-            System.out.println("Get quiz called");
             return quiz.get();
         }
         return null;
