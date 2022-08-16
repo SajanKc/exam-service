@@ -48,7 +48,7 @@ public class QuestionController {
             Set<Question> questions = quiz.getQuestions();
             List<Question> questionList = new ArrayList(questions);
             if (questionList.size() > Integer.parseInt(quiz.getNumberOfQuestions())) {
-                questionList = questionList.subList(0, Integer.parseInt(quiz.getNumberOfQuestions() + 1));
+                questionList = questionList.subList(0, Integer.parseInt(quiz.getNumberOfQuestions()));
             }
 
             // setting answer value blank before sending to client
