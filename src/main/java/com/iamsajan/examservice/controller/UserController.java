@@ -59,10 +59,22 @@ public class UserController {
         return userService.getUsers();
     }
 
+    @GetMapping("/id/{id}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public User getUser(@PathVariable("id") Long id) {
+        return this.userService.getUserById(id);
+    }
+
     @GetMapping("/{username}")
     @ResponseStatus(code = HttpStatus.OK)
     public User getUser(@PathVariable("username") String username) {
         return this.userService.getUserByUsername(username);
+    }
+
+    @PutMapping
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public User updateUser(@RequestBody User user) {
+        return userService.updateUser(user.getId(), user);
     }
 
     @DeleteMapping("/{id}")
